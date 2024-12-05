@@ -1,5 +1,7 @@
 const apiKey = '21ec068df2a5c774ca7f82bbda35c458';
 const section = document.getElementById('cards');
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput")
 
 fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`)
   .then(response => response.json())
@@ -20,6 +22,12 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`)
       heartDiv.className = 'absolute top-2 right-2';
       heartDiv.innerHTML = heartSvg;
 
+      if (favorites.some(fav => fav.id === movie.id)) {
+        heartDiv.querySelector('svg').classList.add('fill-red-400');
+      } else {
+        heartDiv.querySelector('svg').classList.add('fill-white');
+      }
+
       heartDiv.addEventListener('click', () => {
         const svg = heartDiv.querySelector('svg');
 
@@ -35,12 +43,27 @@ fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}&page=1`)
         }
 
         localStorage.setItem('favorites', JSON.stringify(favorites));
-        console.log(localStorage)
+        
       });
 
-      wrapper.appendChild(movieImg);
-      wrapper.appendChild(heartDiv);
-      section.appendChild(wrapper);
+      let query = '';
+
+      if (query === '') {
+        wrapper.appendChild(movieImg);
+        wrapper.appendChild(heartDiv);
+        section.appendChild(wrapper);
+      } else if(movie.title.includes(query) || movie.overview.includes(query)) {
+        wrapper.appendChild(movieImg);
+        wrapper.appendChild(heartDiv);
+        section.appendChild(wrapper);
+      }
     });
   })
   .catch(error => console.error('Error fetching popular movies:', error));
+
+
+  searchInput.addEventListener("input", (e) => {
+    e.
+    query = searchInput.value.toLowerCase().trim();
+    fetchMovies();
+  });
