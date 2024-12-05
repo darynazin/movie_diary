@@ -1,93 +1,67 @@
-//review submmission
-document.addEventListener("DOMContentLoaded", () => {
-  const favoritesContainer = document.getElementById("favorites-container");
+const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+const container = document.getElementById("favorites");
+console.log("overview:", favorites);
 
-  // Load favorite movies from localStorage
-  const loadFavorites = () => {
-    return JSON.parse(localStorage.getItem("favoriteMovies")) || [];
-  };
+// Check if there are any favorites to display
+if (favorites.length === 0) {
+  const noFavorites = document.createElement("p");
+  noFavorites.textContent = "No favorite movies added yet!";
+  noFavorites.className = "text-center text-gray-500 mt-4";
+  container.appendChild(noFavorites);
+} else {
+  favorites.forEach((movie) => {
+    const wrapper = document.createElement("div");
+    wrapper.className =
+      "p-4 border rounded-lg shadow-md mb-4 flex flex-col items-left bg-gray-50";
 
-  // Save updated favorite movies to localStorage
-  const saveFavorites = (movies) => {
-    localStorage.setItem("favoriteMovies", JSON.stringify(movies));
-  };
+    // Movie poster
+    const movieImg = document.createElement("img");
+    movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+    movieImg.alt = movie.title;
+    movieImg.className = "w-48 rounded-lg mb-4";
+    wrapper.appendChild(movieImg);
 
-  // Render a single movie card
-  const renderMovie = (movie) => {
-    const movieDiv = document.createElement("div");
-    movieDiv.className = "bg-gray-800 p-4 rounded shadow text-gray-200";
+    // Movie title
+    const movieTitle = document.createElement("h3");
+    movieTitle.textContent = movie.title;
+    movieTitle.className = "text-lg font-semibold mb-2 text-left";
+    wrapper.appendChild(movieTitle);
 
-    movieDiv.innerHTML = `
-        <img
-          src="${movie.poster}"
-          alt="${movie.title}"
-          class="w-full h-80 object-cover rounded mb-3"
-        />
-        <h2 class="text-lg font-semibold mb-2">${movie.title}</h2>
-        <p class="text-sm text-gray-400 mb-3">${movie.description}</p>
-        <textarea
-          class="w-full border border-gray-600 rounded p-2 mb-3 bg-gray-700 text-gray-200 placeholder-gray-500"
-          placeholder="Add personal notes here..."
-        >${movie.notes || ""}</textarea>
-        <button
-          class="bg-yellow-500 text-gray-900 px-4 py-2 rounded hover:bg-yellow-400"
-          data-id="${movie.id}"
-        >
-          Save Note
-        </button>
-      `;
+    // Review input
+    const reviewInput = document.createElement("textarea");
+    reviewInput.placeholder = "Write your review...";
+    reviewInput.className =
+      "w-full p-3 border rounded mb-2 focus:outline-none text-sm";
+    reviewInput.value = movie.review || ""; // Pre-fill if review already exists
+    wrapper.appendChild(reviewInput);
 
-    // Add event listener to save button
-    const saveButton = movieDiv.querySelector("button");
-    saveButton.addEventListener("click", () => {
-      const textarea = movieDiv.querySelector("textarea");
-      const movieId = Number(saveButton.dataset.id);
+    const actionContainer = document.createElement("div");
+    actionContainer.className = "flex items-center space-x-2"; // Flexbox for alignment
 
-      // Update the favoriteMovies array in localStorage
-      const favoriteMovies = loadFavorites();
-      const movieToUpdate = favoriteMovies.find(
-        (movie) => movie.id === movieId
-      );
-      if (movieToUpdate) {
-        movieToUpdate.notes = textarea.value; // Update the notes
-        saveFavorites(favoriteMovies); // Save updated array to localStorage
-        alert("Note saved!");
+    // Submit button
+    const submitButton = document.createElement("button");
+    submitButton.textContent = "Submit Review";
+    submitButton.className =
+      "bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600";
+    wrapper.appendChild(submitButton);
+
+    // Event listener for submit button
+    submitButton.addEventListener("click", () => {
+      const review = reviewInput.value.trim();
+
+      if (review) {
+        // Update the review in the favorites array
+        const index = favorites.findIndex((fav) => fav.id === movie.id);
+        if (index !== -1) {
+          favorites[index].review = review;
+          localStorage.setItem("favorites", JSON.stringify(favorites));
+          alert("Review saved!");
+        }
+      } else {
+        alert("Please write a review before submitting.");
       }
     });
 
-    favoritesContainer.appendChild(movieDiv);
-  };
-
-  // Render all favorite movies
-  const renderFavorites = () => {
-    const favoriteMovies = loadFavorites(); // Fetch favorite movies from localStorage
-    favoriteMovies.forEach((movie) => {
-      renderMovie(movie);
-    });
-  };
-
-  renderFavorites();
-});
-const favoriteMovies = [
-  {
-    id: 1,
-    title: "Moana 2",
-    description:
-      "Moana 2 is an animated musical adventure film produced by Walt Disney.",
-    poster:
-      "https://media.themoviedb.org/t/p/w440_and_h660_face/yh64qw9mgXBvlaWDi7Q9tpUBAvH.jpg",
-    notes: "", // This will store the user's personal notes
-  },
-  {
-    id: 2,
-    title: "Frozen 3",
-    description:
-      "Frozen 3 continues the epic story of Elsa and Anna in the kingdom of Arendelle.",
-    poster:
-      "https://media.themoviedb.org/t/p/w440_and_h660_face/mbPrrbt8bSLcHSBCHnRclPlMZPl.jpg",
-    notes: "", // This will store the user's personal notes
-  },
-];
-
-// Save favorite movies to localStorage
-localStorage.setItem("favoriteMovies", JSON.stringify(favoriteMovies));
+    container.appendChild(wrapper);
+  });
+}
