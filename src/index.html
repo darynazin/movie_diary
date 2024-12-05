@@ -1,16 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./output.css" rel="stylesheet">
-  <title>Document</title>
-</head>
-<body>
-  <nav></nav>
-  <main>
-    <section></section>
-  </main>
-  <script src="main.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./output.css" rel="stylesheet" />
+    <title>Movie Diary</title>
+    <script src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/umd/heroicons.min.js"></script>
+  </head>
+  <body>
+    <script src="https://cdn.jsdelivr.net/npm/heroicons@1.0.6/umd/heroicons.min.js"></script>
+  </head>
+  <body class="bg-black-500">
+
+    <!-- Header -->
+    <header>
+      <nav class="bg-black text-yellow-500 p-4 rounded-b-2xl shadow-lg">
+        <div class="container mx-auto flex items-center justify-between">
+          <!-- Name -->
+          <div>
+            <a href="index.html" class="text-2xl font-bold">Movie Diary</a>
+          </div>
+
+          <!-- Navbar -->
+          <div>
+            <ul class="flex space-x-8">
+              <li>
+                <a href="index.html" class="hover:text-gray-300 text-lg font-semibold">Home</a>
+              </li>
+              <li>
+                <a href="journal.html" class="hover:text-gray-300 text-lg font-semibold">Journal</a>
+              </li>
+              <li>
+                <!-- Favorite -->
+                <a href="favorite.html" class="hover:text-pink-300 text-lg font-semibold flex items-center space-x-2">
+                  <!-- Heart -->
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                  </svg>
+                  <span>Favorite</span>
+                </a>
+              </li>
+              <li>
+                <!-- Research -->
+                <a href="research.html" class="hover:text-gray-300 text-lg font-semibold flex items-center space-x-2">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M10 2a8 8 0 1 1 0 16 8 8 0 0 1 0-16zM16 16l4 4" />
+                  </svg>
+                
+                </a>
+              </li>
+              <li>
+                <a href="login.html" class="hover:text-gray-300 text-lg font-semibold">Log In</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section></section>
+    </main>
+    <script src="main.js"></script>
+    
+       
+  </body>
+  <!--Footer-->
+  <footer class="bg-black text-white py-6">
+    <div class="container mx-auto px-4 flex flex-col sm:flex-row justify-between items-center">
+    <p>© 2024 MovieDiary</p>
+  </footer>
 </html>
