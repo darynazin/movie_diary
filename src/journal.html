@@ -3,17 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Journal</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍿</text></svg>"
+    />
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="./output.css" rel="stylesheet" />
-    <title>Document</title>
   </head>
-  <body class="bg-black p-6">
-    <div></div>
-    <nav>
-      <a href="./index.html" class="home-button text-white">Home</a>
-    </nav>
-    <main>
-      <section></section>
+
+  <body class="bg-black m-2">
+    <header class="flex justify-center items-center gap-12 m-2 text-white">
+            <!-- Favorites Container -->
+      <section
+        id="favorites-container"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+      ></section>
     </main>
     <script src="journal.js"></script>
   </body>
