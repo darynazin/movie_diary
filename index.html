@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./src/output.css" rel="stylesheet">
+  <title>Document</title>
+</head>
+<body>
+  <nav></nav>
+  <main class="bg-black">
+    <section class="relative">
+      <img src="./src/img/card-img 1.png" class="w-screen" alt="">
+      <form id="searchForm" class="absolute top-2/3 left-1/2 transform -translate-x-1/2">
+        <input 
+      type="text"
+      id="searchInput"
+      placeholder="Search movies..."
+      class="w-[500px] px-4 py-2 rounded-lg focus:outline-none">
+      </form>
+    </section>
+    <h1 class="text-white py-12 px-32 text-3xl">Popular movies</h1>
+    <section id="cards" class="flex flex-wrap justify-center gap-4 pb-56"></section>
+  </main>
+  <script type="module" src="./src/index.js"></script>
+</body>
+</html>
