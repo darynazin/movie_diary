@@ -63,3 +63,20 @@ themeToggleButton.addEventListener("click", () => {
     applyTheme("dark");
   }
 });
+
+window.addEventListener("scroll", () => {
+  const scrollPosition = window.scrollY;
+  console.log("Saved Scroll:", scrollPosition);
+  localStorage.setItem("scrollPosition", scrollPosition);
+});
+
+window.addEventListener("load", () => {
+  const savedScrollPosition = localStorage.getItem("scrollPosition");
+  console.log("Saved Scroll:", savedScrollPosition);
+
+  if (savedScrollPosition !== null) {
+    setTimeout(() => {
+      window.scrollTo(0, parseInt(savedScrollPosition, 10));
+    }, 100);
+  }
+});
