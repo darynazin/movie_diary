@@ -12,14 +12,18 @@ if (favorites.length === 0) {
   favorites.forEach((movie) => {
     const wrapper = document.createElement("div");
     wrapper.className =
-      "p-20 border rounded-lg shadow-md mb-4 flex flex-col items-left bg-zinc-950";
+      "p-20 rounded-lg shadow-md mb-4 flex flex-col items-left bg-zinc-950";
+
+    const detailContainer = document.createElement("div");
+    detailContainer.className = "flex gap-8";
+    wrapper.appendChild(detailContainer);
 
     // Movie poster
     const movieImg = document.createElement("img");
     movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     movieImg.alt = movie.title;
-    movieImg.className = "w-3/12 rounded-lg mb-4";
-    wrapper.appendChild(movieImg);
+    movieImg.className = "w-5/12 rounded-lg mb-4";
+    detailContainer.appendChild(movieImg);
 
     // Movie title
     //const movieTitle = document.createElement("h3");
@@ -31,8 +35,9 @@ if (favorites.length === 0) {
     const movieDescription = document.createElement("p");
     movieDescription.textContent =
       movie.overview || "No description available.";
-    movieDescription.className = "text-lg text-gray-400 mb-4 text-left";
-    wrapper.appendChild(movieDescription);
+    movieDescription.className =
+      "text-lg w-1/2 text-gray-400 mb-4 text-left content-center justify-normal ";
+    detailContainer.appendChild(movieDescription);
 
     // Review input
     const reviewInput = document.createElement("textarea");
@@ -43,7 +48,7 @@ if (favorites.length === 0) {
     wrapper.appendChild(reviewInput);
 
     const actionContainer = document.createElement("div");
-    actionContainer.className = "flex-row space-x-2"; // Flexbox for alignment
+    actionContainer.className = "flex space-x-2"; // Flexbox for alignment
 
     // Submit button
     const submitButton = document.createElement("button");
