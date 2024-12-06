@@ -1,27 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./src/output.css" rel="stylesheet">
-  <title>Document</title>
-</head>
-<body>
-  <nav></nav>
-  <main class="bg-black">
-    <section class="relative">
-      <img src="./src/img/card-img 1.png" class="w-screen" alt="">
-      <form id="searchForm" class="absolute top-2/3 left-1/2 transform -translate-x-1/2">
-        <input 
-      type="text"
-      id="searchInput"
-      placeholder="Search movies..."
-      class="w-[500px] px-4 py-2 rounded-lg focus:outline-none">
-      </form>
-    </section>
-    <h1 class="text-white py-12 px-32 text-3xl">Popular movies</h1>
-    <section id="cards" class="flex flex-wrap justify-center gap-4 pb-56"></section>
-  </main>
-  <script type="module" src="./src/index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <nav></nav>
+    <main class="bg-black">
+      <section class="relative">
+        <img src="./src/img/card-img 1.png" class="w-screen" alt="">
+        <form id="searchForm" class="absolute top-2/3 left-1/2 transform -translate-x-1/2">
+          <input type="text" id="searchInput" placeholder="Search movies..."
+            class="w-[500px] px-4 py-2 rounded-lg focus:outline-none">
+        </form>
+      </section>
+      <h1 id="cardsHeader" class="text-white py-12 px-32 text-3xl">Popular movies</h1>
+      <section id="cards" class="flex flex-wrap justify-center gap-4 pb-56"></section>
+    </main>
+    <script type="module" src="./src/index.js"></script>
+  </body>
 </html>
