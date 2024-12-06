@@ -21,15 +21,15 @@ searchForm.addEventListener("submit", (event) => {
   );
 
   const section = document.getElementById("cards");
-  section.innerHTML = '';
+  section.innerHTML = "";
 
   const message = document.getElementById("cardsHeader");
-  message.textContent = 'No matches found';
+  message.textContent = "No matches found";
 
   filteredMovies.forEach((movie) => {
     renderMovie(movie);
   });
-  searchInput.value = '';
+  searchInput.value = "";
 });
 
 const themeToggleButton = document.getElementById("themeToggle");
@@ -63,5 +63,3 @@ themeToggleButton.addEventListener("click", () => {
     applyTheme("dark");
   }
 });
-
-
