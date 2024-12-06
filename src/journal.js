@@ -12,37 +12,44 @@ if (favorites.length === 0) {
   favorites.forEach((movie) => {
     const wrapper = document.createElement("div");
     wrapper.className =
-      "p-4 border rounded-lg shadow-md mb-4 flex flex-col items-left bg-gray-50";
+      "p-20 border rounded-lg shadow-md mb-4 flex flex-col items-left bg-zinc-950";
 
     // Movie poster
     const movieImg = document.createElement("img");
     movieImg.src = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
     movieImg.alt = movie.title;
-    movieImg.className = "w-48 rounded-lg mb-4";
+    movieImg.className = "w-3/12 rounded-lg mb-4";
     wrapper.appendChild(movieImg);
 
     // Movie title
-    const movieTitle = document.createElement("h3");
-    movieTitle.textContent = movie.title;
-    movieTitle.className = "text-lg font-semibold mb-2 text-left";
-    wrapper.appendChild(movieTitle);
+    //const movieTitle = document.createElement("h3");
+    // movieTitle.textContent = movie.title;
+    // movieTitle.className = "text-lg font-semibold mb-2 text-left";
+    //wrapper.appendChild(movieTitle);
+
+    // Movie description
+    const movieDescription = document.createElement("p");
+    movieDescription.textContent =
+      movie.overview || "No description available.";
+    movieDescription.className = "text-lg text-gray-400 mb-4 text-left";
+    wrapper.appendChild(movieDescription);
 
     // Review input
     const reviewInput = document.createElement("textarea");
     reviewInput.placeholder = "Write your review...";
     reviewInput.className =
-      "w-full p-3 border rounded mb-2 focus:outline-none text-sm";
+      "w-4/12 p-3 border rounded mb-2 focus:outline-none text-sm";
     reviewInput.value = movie.review || ""; // Pre-fill if review already exists
     wrapper.appendChild(reviewInput);
 
     const actionContainer = document.createElement("div");
-    actionContainer.className = "flex items-center space-x-2"; // Flexbox for alignment
+    actionContainer.className = "flex-row space-x-2"; // Flexbox for alignment
 
     // Submit button
     const submitButton = document.createElement("button");
     submitButton.textContent = "Submit Review";
     submitButton.className =
-      "bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600";
+      "bg-blue-500 text-white px-4 py-2 rounded shadow-md hover:bg-blue-600 w-3/12";
     wrapper.appendChild(submitButton);
 
     // Event listener for submit button
